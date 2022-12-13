@@ -62,39 +62,39 @@ p_riided = ühe_arg_protsent(riided)
 def soovitused(majutus, vabaaeg, söök, transport, riided, peod, muu):
     #argumendid peab olema võtetud protsentide arvutamise funktsioonidest
     if majutus <= 27.3: #majutuse protsent
-        return fail.write("Majutuse kulud on alla või võrdne keskmise protsendiga, 27.3% sissetulekust. Tubli!")
+        fail.write("Majutuse kulud on alla või võrdne keskmise protsendiga, 27.3% sissetulekust. Tubli!" + "\n")
     if majutus > 27.3:
-        return fail.write("Kulud majutusele on suuremad keskmisest, 27.3%. Eeldades, et majutuse kulutusi ei saa muuta, proovi hoida raha kokku kusagilt mujalt.")
+        fail.write("Kulud majutusele on suuremad keskmisest, 27.3%. Eeldades, et majutuse kulutusi ei saa muuta, proovi hoida raha kokku kusagilt mujalt." + "\n")
 
     if vabaaeg<= 9.1:
-        return fail.write("Spordi, meelelahutuse ja muud vabaaja kulud on alla või võrdne keskmisest, 9.1% sissetulekust. Oled oma sissetulekut hästi kasutanud!")
+        fail.write("Spordi, meelelahutuse ja muud vabaaja kulud on alla või võrdne keskmisest, 9.1% sissetulekust. Oled oma sissetulekut hästi kasutanud!" + "\n")
     if vabaaeg > 9.1:
-        return fail.write("Kulutused vabale ajale nagu sport, meelelahutus ja muu on üle keskmise. Proovi hoida kusagilt kokku, nt käi kinos ainult kaks korda kuus ja vaata ilme kodust, või käi väljas jooksmas sporisaali membershipi ostmise asemel.")
+        fail.write("Kulutused vabale ajale nagu sport, meelelahutus ja muu on üle keskmise. Proovi hoida kusagilt kokku, nt käi kinos ainult kaks korda kuus ja vaata ilme kodust, või käi väljas jooksmas sporisaali membershipi ostmise asemel." + "\n")
 
     if söök <= 18.2:
-        return fail.write("Söögi peale läheb täpselt nii palju, kui vaja on.")
+        fail.write("Söögi peale läheb täpselt nii palju, kui vaja on." + "\n")
     if söök > 18.2:
-        return fail.write("Võib-olla sa tellid liiga palju toitu koju võid sööd palju väljas. Katseta rohkem kodus kokkamist ning valmista sööki suures koguses, et saaks süüa sama einet ka nt lõunaks.")
+        fail.write("Võib-olla sa tellid liiga palju toitu koju võid sööd palju väljas. Katseta rohkem kodus kokkamist ning valmista sööki suures koguses, et saaks süüa sama einet ka nt lõunaks." + "\n")
 
     if transport <= 1.5:
-        return fail.write("Transpordilt oled säästnud hästi")
+        fail.write("Transpordilt oled säästnud hästi" + "\n")
     if transport > 1.5:
-        return fail.write("Oma autoga sõites võivad kõrged transpordi kulutused olla põhjustatud bensiini hindadest. Taksod on ka kallid-taksosõidud jäta olukordadeks, kus muu transport pole võimalik. Lisaks, käi palju jala kui võimalik on. See on ka tervisele hea :D")
+        fail.write("Oma autoga sõites võivad kõrged transpordi kulutused olla põhjustatud bensiini hindadest. Taksod on ka kallid-taksosõidud jäta olukordadeks, kus muu transport pole võimalik. Lisaks, käi palju jala kui võimalik on. See on ka tervisele hea :D" + "\n")
  
     if riided <= 5.5:
-        return fail.write("Riietele ja jalanõudele ei kulu kuus palju. Tavaliselt ostetakse kalleid tooteid nagu saapad kord aastas. Väiksemad tooted nagu sokid ja t-särgid on suhteliselt odavad.")
+        fail.write("Riietele ja jalanõudele ei kulu kuus palju. Tavaliselt ostetakse kalleid tooteid nagu saapad kord aastas. Väiksemad tooted nagu sokid ja t-särgid on suhteliselt odavad." + "\n")
     if riided > 5.5:
-        return fail.write("Hoidu impulsiivsetest ostudest. Kaltsukad ning teiseringi poed on ka mitmetes linnades saadaval. Isegi äpid nagu Yaga aitavad leida kvaliteetseid riideid odavamate hindadega.")
+        fail.write("Hoidu impulsiivsetest ostudest. Kaltsukad ning teiseringi poed on ka mitmetes linnades saadaval. Isegi äpid nagu Yaga aitavad leida kvaliteetseid riideid odavamate hindadega." + "\n")
  
     if peod <= 5.5:
-        return fail.write("Tubli oled. Alkohol on kallis, eriti baarides ning klubides. Ühe õhtuga võib kaduda üle 20 euro.")
+        fail.write("Tubli oled. Alkohol on kallis, eriti baarides ning klubides. Ühe õhtuga võib kaduda üle 20 euro." + "\n")
     if peod > 5.5:
-        return fail.write("Ole ettevaatlik. Liigne alkoholi tarbimine ei mõju tervisele ega rahakotile hästi. Sea endale alkoholi tarbimiseks piirangud, nii rahalised kui ka enda tervise jaoks.")
+        fail.write("Ole ettevaatlik. Liigne alkoholi tarbimine ei mõju tervisele ega rahakotile hästi. Sea endale alkoholi tarbimiseks piirangud, nii rahalised kui ka enda tervise jaoks." + "\n")
       
     if muu <= 32.9:
-        return fail.write("Säästad hästi raha muude asjade jaoks-olgu need kõrvale pandud hädavara säästud või kogud raha suure ostu jaoks : D")
+        fail.write("Säästad hästi raha muude asjade jaoks-olgu need kõrvale pandud hädavara säästud või kogud raha suure ostu jaoks : D" + "\n")
     if muu > 32.9:
-        return fail.write("Väldi impulsiivseid oste ja koosta iga kuu endale korralik eelarve. Raha peaks olema ka tagavara kontol rasketeks olukordadeks.")
+        fail.write("Väldi impulsiivseid oste ja koosta iga kuu endale korralik eelarve. Raha peaks olema ka tagavara kontol rasketeks olukordadeks." + "\n")
 
 soovitused2 = soovitused(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_söök, p_transport, p_riided, p_peod, p_muu) 
 
@@ -109,7 +109,7 @@ def tudengi_eelarve(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_muu, p_söök
     plt.title("Kuu eelarve")
     plt.xlabel("Kategooriad")
     plt.ylabel("Osakaal")
-    return plt.savefig(fail)
+    return plt.savefig("fail")
 
 def keskmine_tudengi_eelarve(andmed):
     valdkonnad=list(andmed.keys())
@@ -119,7 +119,7 @@ def keskmine_tudengi_eelarve(andmed):
     plt.title("Tartu tudengite keskmised kulud kuus")
     plt.xlabel("Valdkonnad")
     plt.ylabel("Kulud protsentides( keskmine sissetulek: 550 eurot")
-    return plt.savefig(fail)
+    return plt.savefig("fail")
 
 tudengi_eelarve_diagramm = tudengi_eelarve(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_muu, p_söök, p_peod)
 andmed={"Üür ja kommunaalid":27.3,"Vabaaeg":9.1, "Söök":18.2, "Transport":1.5, "Riided/jalanõud":5.5,"Alkohol":5.5, "Muu":32.9}
