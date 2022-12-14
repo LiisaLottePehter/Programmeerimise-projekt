@@ -15,7 +15,10 @@ layout = [  [sg.Text('Sisesta oma kuu kulutused')],
             [sg.Text('Palju kulub raha transpordile'), sg.InputText(key="transport")],
             [sg.Text('Palju kulub iluteenustele'), sg.InputText(key="iluteenused")],
             [sg.Text('Palju kulub söögile raha'), sg.InputText(key="söök")],
-            [sg.Button('Sinu kuu eelarve')], [sg.Button('Keskmine üliõpilase kuueelarve')], [sg.Button("Lõpeta")]]
+            [sg.Button("Sinu kuu eelarve graafik")], 
+            [sg.Button("Keskmise tudengi eelarve graafik")], 
+            [sg.Button("Näita soovitusi")], 
+            [sg.Button("Lõpeta")]]
 
 
 window = sg.Window('Kuu eelarve', layout)
@@ -32,8 +35,6 @@ meelelahutus = float(values["meelelahutus"])
 transport = float(values["transport"])
 iluteenused = float(values["iluteenused"])
 söök = float(values["söök"])
-
-fail = open("Kuu eelarve.txt", "w") 
 
 def kahe_arg_protsent(ü_arg, t_arg):
     summa1 = ü_arg + t_arg
@@ -58,11 +59,26 @@ p_transport = ühe_arg_protsent(transport)
 
 p_riided = ühe_arg_protsent(riided)
 
+fail = open("Kuu eelarve.txt", "w")
+
+olulised = üür + kommunaalid + söök + telefon + transport
+teise_järgulised = meelelahutus + sport + peod + iluteenused + riided
+
+p_olulised = ühe_arg_protsent(olulised)
+p_teise_järgulised = ühe_arg_protsent(teise_järgulised)
+
+fail.write("Oluliste kulutuste(üür, kommunaalid, söök, telefon ja transport) kulutuste summa on "+ str(olulised) + " ja protsent kogu kulutustest on " + str(p_olulised) + "\n")
+fail.write("Teise järguliste(meelelahutus, sport, peod, riided, jne.) kulutuste summa on "+ str(teise_järgulised) + " ja protsent kogu kulutustest on " + str(p_teise_järgulised) + "\n")
+
+if p_olulised > p_teise_järgulised:
+    fail.write("Tubli, olulistele kulutustele kulus rohkem kui teise järgulistele" + "\n")
+else:
+    fail.write("Proovi järgmine kuu jälgida teisejärguliste kulutuste suurust" + "\n")
 #Tingimuslaused
 def soovitused(majutus, vabaaeg, söök, transport, riided, peod, muu):
     #argumendid peab olema võtetud protsentide arvutamise funktsioonidest
     if majutus <= 27.3: #majutuse protsent
-        fail.write("Majutuse kulud on alla või võrdne keskmise protsendiga, 27.3% sissetulekust. Tubli!" + "\n")
+        fail.write("\n" + "Majutuse kulud on alla või võrdne keskmise protsendiga, 27.3% sissetulekust. Tubli!" + "\n")
     if majutus > 27.3:
         fail.write("Kulud majutusele on suuremad keskmisest, 27.3%. Eeldades, et majutuse kulutusi ei saa muuta, proovi hoida raha kokku kusagilt mujalt." + "\n")
 
@@ -98,18 +114,18 @@ def soovitused(majutus, vabaaeg, söök, transport, riided, peod, muu):
 
 soovitused2 = soovitused(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_söök, p_transport, p_riided, p_peod, p_muu) 
 
-#diagrammi funktsioon
-
 fail = open("Kuu eelarve.txt", "w")
 
+#diagrammi funktsioon
+
 def tudengi_eelarve(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_muu, p_söök, p_peod):
-    Kategooriad = ["Üür ja kommunaalid", "Vabaaja tegevused", "Söök", "Peod", "Muu"]
+    Kategooriad = ["Üür ja kom", "Vabaaeg", "Söök", "Peod", "Muu"]
     Osakaal = [p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_söök, p_peod, p_muu]
     plt.bar(Kategooriad, Osakaal)
     plt.title("Kuu eelarve")
     plt.xlabel("Kategooriad")
     plt.ylabel("Osakaal")
-    return plt.savefig("fail")
+    return plt.show()
 
 def keskmine_tudengi_eelarve(andmed):
     valdkonnad=list(andmed.keys())
@@ -119,25 +135,28 @@ def keskmine_tudengi_eelarve(andmed):
     plt.title("Tartu tudengite keskmised kulud kuus")
     plt.xlabel("Valdkonnad")
     plt.ylabel("Kulud protsentides( keskmine sissetulek: 550 eurot")
-    return plt.savefig("fail")
+    return plt.show()
 
 tudengi_eelarve_diagramm = tudengi_eelarve(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_muu, p_söök, p_peod)
-andmed={"Üür ja kommunaalid":27.3,"Vabaaeg":9.1, "Söök":18.2, "Transport":1.5, "Riided/jalanõud":5.5,"Alkohol":5.5, "Muu":32.9}
+
+andmed={"Üür ja kom":27.3,"Vabaaeg":9.1, "Söök":18.2, "Trans":1.5, "Riided":5.5,"Peod":5.5, "Muu":32.9}
 keskmise_tudengi_eelarve_diagramm = keskmine_tudengi_eelarve(andmed)
 
 fail.write(soovitused2)
-fail.write(tudengi_eelarve_diagramm)
-fail.write(keskmise_tudengi_eelarve_diagramm)
+fail.close()
 
 while True:
     if event == "Lõpeta":
         break
-    elif event == "Sinu kuu eelarve":
-        sg.popup(fail)
-        
-    elif event == "Keskmine üliõpilase kuueelarve":
+    if event == "Sinu kuu eelarve graafik":
+        sg.popup(tudengi_eelarve_diagramm)
+    if event == "Keskmise tudengi eelarve graafik":
         sg.popup(keskmise_tudengi_eelarve_diagramm)
-
-fail.close()
+    if event == "Näita soovitusi":
+        with open("Soovitused.txt") as f:
+            for rida in f:
+                loe = f.read()
+        print(loe)
+        
 window.close()
 
