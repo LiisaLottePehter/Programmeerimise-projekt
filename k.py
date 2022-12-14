@@ -65,7 +65,7 @@ def soovitused(majutus, vabaaeg, söök, transport, riided, peod, muu):
     if vabaaeg<= 9.1:
         soovituste_järjend.append("Spordi, meelelahutuse ja muud vabaaja kulud on alla või võrdne keskmisest, 9.1% sissetulekust. Oled oma sissetulekut hästi kasutanud!")
     if vabaaeg > 9.1:
-        soovituste_järjend.append("Kulutused vabale ajale nagu sport, meelelahutus ja muu on üle keskmise. Proovi hoida kusagilt kokku, nt käi kinos ainult kaks korda kuus ja vaata filme kodust, või käi väljas jooksmas spordisaali membershipi ostmise asemel.")
+        soovituste_järjend.append("Kulutused vabale ajale nagu sport, meelelahutus ja muu on üle keskmise. Proovi hoida kusagilt kokku, nt käi kinos ainult kaks korda kuus ja vaata ilme kodust, või käi väljas jooksmas sporisaali membershipi ostmise asemel.")
 
     if söök <= 18.2:
         soovituste_järjend.append("Söögi peale läheb täpselt nii palju, kui vaja on.")
@@ -130,15 +130,14 @@ while True:
         soovituste_järjend.append("Tubli, olulistele kulutustele kulus rohkem kui teise järgulistele")
     else:
         soovituste_järjend.append("Proovi järgmine kuu jälgida teisejärguliste kulutuste suurust")
-
-    if event == "Lõpeta" or event == sg.WIN_CLOSED:
+    if event == "Lõpeta":
         break
     elif event == "Sinu kuu eelarve graafik":
         tudengi_eelarve(p_üür_ja_kommunaalid, p_vabaaja_tegevused, p_söök, p_peod, p_muu)
     elif event == "Keskmise tudengi eelarve graafik":
         keskmine_tudengi_eelarve()
     elif event == "Näita soovitusi":
-        sg.popup(*soovitused2, title="Soovitused")
+        sg.popup(*soovitused2)
 
 window.close()
 
